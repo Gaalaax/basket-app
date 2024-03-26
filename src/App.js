@@ -6,6 +6,8 @@ import {
   ThemeIcon,
   rem,
   Input,
+  Button,
+  Group,
 } from "@mantine/core";
 import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
 import Card from "./Components/Card";
@@ -52,9 +54,16 @@ function App() {
   );
   return (
     <Container>
-      <Input.Wrapper label="Search ">
-        <Input onChange={(e) => setSearchValue(e.target.value)} />
-      </Input.Wrapper>
+      <Group align="end">
+        <Input.Wrapper label="Search ">
+          <Input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </Input.Wrapper>
+        <Button onClick={() => setSearchValue("")}>Clear</Button>
+      </Group>
+
       <SimpleGrid cols={3} className="Store">
         {filteredItems.map(({ name, src }) => {
           return (
