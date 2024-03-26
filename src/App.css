@@ -6,6 +6,12 @@
   height: 40vmin;
   pointer-events: none;
 }
+.list {
+  padding: 15px;
+}
+.Store {
+  padding: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
