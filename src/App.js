@@ -9,10 +9,12 @@ import {
   Indicator,
   Input,
   Button,
+  ActionIcon,
+  Icon,
   Group,
   Drawer,
 } from "@mantine/core";
-import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
+import { IconCircleCheck, IconShoppingCart } from "@tabler/icons-react";
 import Card from "./Components/Card";
 import "./App.css";
 
@@ -67,7 +69,9 @@ function App() {
         </Input.Wrapper>
         <Button onClick={() => setSearchValue("")}>Clear</Button>
         <Indicator color="red" label={basketItems.length} size={18}>
-          <Button onClick={open}>Open Drawer</Button>
+          <Button onClick={open}>
+            <IconShoppingCart size={22} />
+          </Button>
         </Indicator>
       </Group>
 
