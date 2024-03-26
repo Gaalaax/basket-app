@@ -6,6 +6,7 @@ import {
   List,
   ThemeIcon,
   rem,
+  Indicator,
   Input,
   Button,
   Group,
@@ -65,7 +66,9 @@ function App() {
           />
         </Input.Wrapper>
         <Button onClick={() => setSearchValue("")}>Clear</Button>
-        <Button onClick={open}>Open Drawer</Button>
+        <Indicator color="red" label={basketItems.length} size={18}>
+          <Button onClick={open}>Open Drawer</Button>
+        </Indicator>
       </Group>
 
       <SimpleGrid cols={3} className="Store">
