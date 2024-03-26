@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
 import {
   Container,
   SimpleGrid,
@@ -8,6 +9,7 @@ import {
   Input,
   Button,
   Group,
+  Drawer,
 } from "@mantine/core";
 import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
 import Card from "./Components/Card";
@@ -52,6 +54,7 @@ function App() {
   let filteredItems = storeItems.filter(
     (item) => item.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
   );
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <Container>
       <Group align="end">
@@ -62,6 +65,7 @@ function App() {
           />
         </Input.Wrapper>
         <Button onClick={() => setSearchValue("")}>Clear</Button>
+        <Button onClick={open}>Open Drawer</Button>
       </Group>
 
       <SimpleGrid cols={3} className="Store">
@@ -77,21 +81,28 @@ function App() {
         })}
       </SimpleGrid>
 
-      <List
-        class="list"
-        spacing="xs"
-        size="sm"
-        center
-        icon={
-          <ThemeIcon color="teal" size={24} radius="xl">
-            <IconCircleCheck style={{ width: rem(16), height: rem(16) }} />
-          </ThemeIcon>
-        }
+      <Drawer
+        opened={opened}
+        onClose={close}
+        title="Cart"
+        overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
       >
-        {basketItems.map(({ name }, index) => (
-          <List.Item key={index}>{name}</List.Item>
-        ))}
-      </List>
+        <List
+          class="list"
+          spacing="xs"
+          size="sm"
+          center
+          icon={
+            <ThemeIcon color="teal" size={24} radius="xl">
+              <IconCircleCheck style={{ width: rem(16), height: rem(16) }} />
+            </ThemeIcon>
+          }
+        >
+          {basketItems.map(({ name }, index) => (
+            <List.Item key={index}>{name}</List.Item>
+          ))}
+        </List>
+      </Drawer>
     </Container>
   );
 }
